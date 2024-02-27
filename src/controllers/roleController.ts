@@ -1,4 +1,5 @@
 import { Request, Response } from "express"
+import { User } from "../models/User";
 
 export const GetHealthy=(req:Request,res:Response)=>{
     res.status(200).json(
@@ -15,7 +16,38 @@ export const GetHealthy=(req:Request,res:Response)=>{
 
 // AUTH
 
-export const SignInService=(req:Request,res:Response)=>{
+export const SignInService=async(req:Request,res:Response)=>{
+   try {
+    const first_name=req.body.first_name;
+    const last_name=req.body.last_name;
+    const email=req.body.email;
+    const password_hash=req.body.password_hash;
+    const role_id=req.body.role_id;
+
+
+    const NewUser=await User.create({
+    //  first_name:first_name,
+    //  last_name:last_name,
+    //  email:email,
+    //  password_hash:password_hash,
+    role_id:role_id
+    }).save()
+
+
+    res.status(200).json({
+        success:true,
+        message:"User created",
+        data:NewUser
+    })
+   } 
+   
+   catch (error) {
+    res.status(400).json({
+        success:true,
+        message:"Can't create role",
+        error:error
+    })
+   } 
 
 }
 export const LogInService=(req:Request,res:Response)=>{
