@@ -1,6 +1,9 @@
 import express from "express";
 import 'dotenv/config'
-import { DeleteService, DeleteUser, FilterUserInfo, GetHealthy, GetServices, GetUserAppointments, GetUserInfo, GetUsers, LogInService, PostAppointment, PostService, RecoverAppointments, SignInService, UpdateAppointment, UpdateService, UpdateUserInfo, UpdateUserRole } from "./controllers/roleController"; 
+import { LogInService, SignInService } from "./controllers/authController";
+import { DeleteUser, FilterUserInfo, GetUserInfo, GetUsers, UpdateUserInfo, UpdateUserRole } from "./controllers/userController";
+import { GetUserAppointments, PostAppointment, RecoverAppointments, UpdateAppointment } from "./controllers/appointmentController";
+import { DeleteService, GetServices, PostService, UpdateService } from "./controllers/serviceController";
 
 export const app =express();
 
