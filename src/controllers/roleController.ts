@@ -179,7 +179,7 @@ export const UpdateUserInfo = async (req: Request, res: Response) => {
         return res.status(200).json({
             success: true,
             message: "User updated succesfully ",
-            data:userUpdated
+            data: userUpdated
         })
 
     }
@@ -196,8 +196,30 @@ export const UpdateUserInfo = async (req: Request, res: Response) => {
 export const FilterUserInfo = (req: Request, res: Response) => {
 
 }
-export const DeleteUser = (req: Request, res: Response) => {
+export const DeleteUser = async (req: Request, res: Response) => {
+    try {
 
+        const userId = req.params.id;
+        const userToRemove: any = await User.findOneBy({
+            id: parseInt(userId),
+        })
+        const userIdRemoved = await User.remove(userToRemove)
+
+        return res.status(200).json({
+            success: true,
+            message: "User deleted succesfully ",
+            data: userIdRemoved
+        })
+
+
+    }
+    catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "User can't be deleted ",
+            error: error
+        })
+    }
 }
 export const UpdateUserRole = (req: Request, res: Response) => {
 
