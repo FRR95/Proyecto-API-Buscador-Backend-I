@@ -91,21 +91,55 @@ export const LogInService = (req: Request, res: Response) => {
 export const GetUsers = async (req: Request, res: Response) => {
     try {
 
-    //   const users=  await User.find()
-    const users=  await User.find({
-    select:{
-    id:true,
-    first_name:true
-    }
-    })
+        const users = await User.find()
+        // const users=  await User.find({
+        // select:{
+        // id:true,
+        // first_name:true
+        // }
+        // })
 
 
         res.status(200).json({
             success: true,
-            message: "User retieves succesfully ",
-            data:users
+            message: "Users retrieved succesfully ",
+            data: users
 
         })
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Users can't be retrieved ",
+            error: error
+        })
+    }
+}
+export const GetUserInfo = async (req: Request, res: Response) => {
+
+    try {
+        const userId = req.params.id;
+
+        const user = await User.findOneBy({
+            id: parseInt(userId)
+        })
+
+        if (!user) {
+            return res.status(500).json({
+                success: false,
+                message: "User not found ",
+
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: "User retrieved succesfully ",
+            data: user
+
+        })
+
+
 
     } catch (error) {
         res.status(500).json({
@@ -115,10 +149,48 @@ export const GetUsers = async (req: Request, res: Response) => {
         })
     }
 }
-export const GetUserInfo = (req: Request, res: Response) => {
+export const UpdateUserInfo = async (req: Request, res: Response) => {
+    try {
 
-}
-export const UpdateUserInfo = (req: Request, res: Response) => {
+        const userId = req.params.id;
+        const name = req.body.first_name;
+
+        const user = await User.findOneBy({
+            id: parseInt(userId)
+        })
+
+        if (!user) {
+            return res.status(500).json({
+                success: false,
+                message: "User not found ",
+
+            })
+        }
+        const userUpdated = await User.update(
+            {
+                id: parseInt(userId)
+            },
+            {
+                first_name: name
+            }
+        )
+
+
+        return res.status(200).json({
+            success: true,
+            message: "User updated succesfully ",
+            data:userUpdated
+        })
+
+    }
+
+    catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "User can't be updated ",
+            error: error
+        })
+    }
 
 }
 export const FilterUserInfo = (req: Request, res: Response) => {
