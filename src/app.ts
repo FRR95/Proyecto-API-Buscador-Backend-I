@@ -7,14 +7,14 @@ export const app =express();
 app.use(express.json());
 
 
-// routes
+// ROUTES 
 
-//AUTH
+//AUTH ROUTES
 app.post('/api/auth/register',SignInService)
 app.post('/api/auth/login',LogInService)
 
-// USERS
-app.get('api/users',GetUsers)
+// USERS ROUTES
+app.get('/api/users',GetUsers)
 app.get('/api/users/profile',GetUserInfo)
 app.put('/api/users/profile',UpdateUserInfo)
 app.get('/api/users?email=ejemplo@ejemplo.com',FilterUserInfo)

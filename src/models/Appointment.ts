@@ -2,7 +2,7 @@ import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGe
 import { Service } from "./Service";
 import { User } from "./User";
 
-@Entity()
+@Entity("appointments")
 export class Appointment extends BaseEntity{
     @PrimaryGeneratedColumn()
     id!: number
