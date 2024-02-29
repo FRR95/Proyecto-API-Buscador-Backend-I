@@ -2,6 +2,7 @@
 import bcrypt from "bcrypt";
 import { Request, Response } from "express"
 import { User } from "../models/User";
+import jwt from "jsonwebtoken";
 
 // AUTH
 
@@ -65,6 +66,84 @@ export const SignInService = async (req: Request, res: Response) => {
     }
 
 }
-export const LogInService = (req: Request, res: Response) => {
+export const LogInService = async (req: Request, res: Response) => {
+    try {
+        const email = req.body.email
+        const password = req.body.password_hash
 
+        //validator email and password
+
+        if (!email || !password) {
+            return res.status(400).json({
+                success: false,
+                message: "Email and password are needed ",
+
+            })
+        }
+
+        //todo validar formato email 
+
+        const user = await User.findOne({
+            where: {
+                email: email
+            },
+            relations: {
+                role: true
+            },
+            select: {
+                id: true,
+                email: true,
+                first_name: true,
+                password_hash: true,
+                role: {
+                    name: true
+                }
+            }
+        })
+
+        console.log(user);
+
+        if (!user) {
+            return res.status(400).json({
+                success: false,
+                message: "User does not exist",
+
+            })
+        }
+        const isValidPassword = bcrypt.compareSync(password, user.password_hash)
+        if (!isValidPassword) {
+            return res.status(400).json({
+                success: false,
+                message: "Password is not valid",
+
+            })
+        }
+        const token = jwt.sign({
+            userId: user.id,
+            roleName: user.role.name
+        },
+            process.env.JWT_SECRET as string,
+            {
+                expiresIn: "2h"
+            }
+        )
+
+        res.status(201).json({
+            success: true,
+            message: "User logged succesfully",
+            token: token
+
+        })
+    }
+    catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "User can't be logged ",
+            error: error
+        })
+    }
+    ///"first_name":"Francisco",
+    ///"last_name":"Rocher",
+    ///"email":"fran@gmail.com",
+    ///"password_hash":"1234567"
 }

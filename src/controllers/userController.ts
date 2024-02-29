@@ -36,10 +36,10 @@ export const GetUsers = async (req: Request, res: Response) => {
 export const GetUserInfo = async (req: Request, res: Response) => {
 
     try {
-        const userId = req.params.id;
+        const userId = req.tokenData.userId;
 
         const user = await User.findOneBy({
-            id: parseInt(userId)
+            id: userId
         })
 
         if (!user) {
@@ -70,11 +70,11 @@ export const GetUserInfo = async (req: Request, res: Response) => {
 export const UpdateUserInfo = async (req: Request, res: Response) => {
     try {
 
-        const userId = req.params.id;
+        const userId = req.tokenData.userId;
         const name = req.body.first_name;
 
         const user = await User.findOneBy({
-            id: parseInt(userId)
+            id: userId
         })
 
         if (!user) {
@@ -86,7 +86,7 @@ export const UpdateUserInfo = async (req: Request, res: Response) => {
         }
         const userUpdated = await User.update(
             {
-                id: parseInt(userId)
+                id: userId
             },
             {
                 first_name: name
@@ -116,12 +116,16 @@ export const FilterUserInfo = (req: Request, res: Response) => {
 }
 export const DeleteUser = async (req: Request, res: Response) => {
     try {
-
+        
         const userId = req.params.id;
+
+      
+
         const userToRemove: any = await User.findOneBy({
             id: parseInt(userId),
         })
 
+      
         if (!userToRemove) {
             return res.status(400).json({
                 success: false,
