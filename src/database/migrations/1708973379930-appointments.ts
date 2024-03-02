@@ -51,6 +51,7 @@ export class Appointments1708973379930 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropTable("appointments");
     }
 
 }

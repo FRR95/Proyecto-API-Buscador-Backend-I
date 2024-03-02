@@ -45,7 +45,7 @@ export const SignInService = async (req: Request, res: Response) => {
             email: email,
             password_hash: passwordEncrypted,
             role: {
-                id: 1
+                id: 3
             }
         }).save()
 
@@ -64,7 +64,10 @@ export const SignInService = async (req: Request, res: Response) => {
             error: error
         })
     }
-
+  ///"first_name":"Francisco",
+    ///"last_name":"Rocher",
+    ///"email":"fran@gmail.com",
+    ///"password_hash":"1234567"
 }
 export const LogInService = async (req: Request, res: Response) => {
     try {
@@ -142,8 +145,7 @@ export const LogInService = async (req: Request, res: Response) => {
             error: error
         })
     }
-    ///"first_name":"Francisco",
-    ///"last_name":"Rocher",
+  
     ///"email":"fran@gmail.com",
     ///"password_hash":"1234567"
 }

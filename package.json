@@ -7,7 +7,11 @@
     "start": "nodemon ./src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "run-migrations": "typeorm-ts-node-commonjs migration:run -d ./src/database/db.ts",
-    "revert-migrations": "typeorm-ts-node-commonjs migration:revert -d ./src/database/db.ts"
+    "revert-migrations": "typeorm-ts-node-commonjs migration:revert -d ./src/database/db.ts",
+    "run-roleseeders": "ts-node ./src/database/seeders/roleSeeders.ts",
+    "run-serviceseeders": "ts-node ./src/database/seeders/serviceSeeders.ts",
+    "run-userseeders": "ts-node ./src/database/seeders/userSeeders.ts",
+    "run-appointmentseeders": "ts-node ./src/database/seeders/appointmentSeeders.ts"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +30,7 @@
     "typescript": "^5.3.3"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@types/bcrypt": "^5.0.2",
     "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.6",

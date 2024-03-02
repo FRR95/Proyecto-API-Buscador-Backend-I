@@ -1,0 +1,11 @@
+USE tattooAndPiercingShop;
+insert into `users` (id, first_name, last_name, email, password_hash, role_id) values (1, 'Fleming', 'Barrowcliffe', 'fbarrowcliffe0@reference.com', '$2b$08$oCmWUE5F7WHXqBaal2tpEOsXnrfdFx556wG4FEgiUPzIU75PppyOO', 3);
+insert into `users` (id, first_name, last_name, email, password_hash, role_id) values (2, 'Benjamin', 'Bodill', 'bbodill1@google.pl', '$2b$08$oCmWUE5F7WHXqBaal2tpEOsXnrfdFx556wG4FEgiUPzIU75PppyOO', 2);
+insert into `users` (id, first_name, last_name, email, password_hash, role_id) values (3, 'Caroljean', 'Buzin', 'cbuzin2@intel.com', '$2b$08$oCmWUE5F7WHXqBaal2tpEOsXnrfdFx556wG4FEgiUPzIU75PppyOO', 2);
+insert into `users` (id, first_name, last_name, email, password_hash, role_id) values (4, 'Weston', 'Morford', 'wmorford3@yelp.com', '$2b$08$oCmWUE5F7WHXqBaal2tpEOsXnrfdFx556wG4FEgiUPzIU75PppyOO', 1);
+insert into `users` (id, first_name, last_name, email, password_hash, role_id) values (5, 'Taffy', 'O'' Flaherty', 'toflaherty4@yahoo.co.jp', '$2b$08$oCmWUE5F7WHXqBaal2tpEOsXnrfdFx556wG4FEgiUPzIU75PppyOO', 2);
+insert into `users` (id, first_name, last_name, email, password_hash, role_id) values (6, 'Gunner', 'Droogan', 'gdroogan5@nhs.uk', '$2b$08$oCmWUE5F7WHXqBaal2tpEOsXnrfdFx556wG4FEgiUPzIU75PppyOO', 3);
+insert into `users` (id, first_name, last_name, email, password_hash, role_id) values (7, 'Robbie', 'Gowler', 'rgowler6@ucsd.edu', 'w$2b$08$oCmWUE5F7WHXqBaal2tpEOsXnrfdFx556wG4FEgiUPzIU75PppyOO', 2);
+insert into `users` (id, first_name, last_name, email, password_hash, role_id) values (8, 'Jedd', 'Dolton', 'jdolton7@chron.com', '$2b$08$oCmWUE5F7WHXqBaal2tpEOsXnrfdFx556wG4FEgiUPzIU75PppyOO', 3);
+insert into `users` (id, first_name, last_name, email, password_hash, role_id) values (9, 'Jillayne', 'Djokic', 'jdjokic8@google.de', 'n$2b$08$oCmWUE5F7WHXqBaal2tpEOsXnrfdFx556wG4FEgiUPzIU75PppyOO', 3);
+insert into `users` (id, first_name, last_name, email, password_hash, role_id) values (10, 'Sam', 'Impson', 'simpson9@fastcompany.com', '$2b$08$oCmWUE5F7WHXqBaal2tpEOsXnrfdFx556wG4FEgiUPzIU75PppyOO', 2);

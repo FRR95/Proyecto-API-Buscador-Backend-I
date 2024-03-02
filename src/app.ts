@@ -24,24 +24,23 @@ app.get('/api/user/profile',auth,GetUserInfo)
 app.put('/api/user/profile',auth,UpdateUserInfo)
 app.delete('/api/users/:id',auth,isSuperAdmin ,DeleteUser)
 app.put('/api/users/:id/role',auth,isSuperAdmin ,UpdateUserRole)
-app.get('/api/users?email=ejemplo@ejemplo.com',FilterUserInfo)
+// app.get('/api/users/:email',auth,isSuperAdmin ,FilterUserInfo)
 
 
 //APPOINTMENTS
-app.post('/api/appointments',PostAppointment)
-app.put('/api/appointments',UpdateAppointment)
-app.get('/api/appointments/:id',RecoverAppointments)
-app.get('/api/appointments/:id',GetUserAppointments)
+app.post('/api/appointments',auth,PostAppointment)
+app.put('/api/appointments',auth,UpdateAppointment)
+app.get('/api/appointments/:id',auth,RecoverAppointments)
+app.get('/api/appointments',auth,GetUserAppointments)
 
 //SERVICES
 app.get('/api/services',GetServices)
-app.post('/api/services',PostService)
+app.post('/api/services',auth,isSuperAdmin,PostService)
 app.put('/api/services/:id',auth,isSuperAdmin,UpdateService)
 app.delete('/api/services/:id',auth,isSuperAdmin,DeleteService)
 
 
 
-//TESTING 
 
 
 

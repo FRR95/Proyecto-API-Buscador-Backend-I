@@ -18,7 +18,6 @@ export class User extends BaseEntity {
     
     @Column({ name: 'password_hash' })
     password_hash!:string
-
     
     @ManyToOne(() => Role, (role) => role.users)
     @JoinColumn ({ name: "role_id" }) 
