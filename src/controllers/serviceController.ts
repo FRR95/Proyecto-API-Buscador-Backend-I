@@ -4,7 +4,12 @@ import { Service } from "../models/Service";
 
 export const GetServices = async (req: Request, res: Response) => {
     try {
-        const services = await Service.find()
+        const services = await Service.find({
+        select:{
+         service_name:true,
+         description:true
+        }
+        })
         res.status(200).json({
             success: true,
             message: "Services retrieved succesfully ",
@@ -24,11 +29,11 @@ export const GetServices = async (req: Request, res: Response) => {
 export const PostService = async (req: Request, res: Response) => {
 
     try {
-        const services_name = req.body.services_name;
+        const services_name = req.body.service_name;
         const description = req.body.description;
 
         const NewService = await Service.create({
-            services_name: services_name,
+            service_name: services_name,
             description: description,
 
         }).save()
@@ -53,7 +58,7 @@ export const PostService = async (req: Request, res: Response) => {
 export const UpdateService = async (req: Request, res: Response) => {
     try {
         const serviceId = req.params.id;
-        const service_name = req.body.services_name;
+        const service_name = req.body.service_name;
 
         const service = await Service.findOneBy({
             id: parseInt(serviceId)
@@ -70,7 +75,7 @@ export const UpdateService = async (req: Request, res: Response) => {
                 id: parseInt(serviceId)
             },
             {
-                services_name: service_name
+                service_name: service_name
             }
         )
 
@@ -93,8 +98,9 @@ export const UpdateService = async (req: Request, res: Response) => {
 export const DeleteService = async (req: Request, res: Response) => {
     try {
         const serviceId = req.params.id;
-        const serviceToRemove: any = await Service.findOneBy({
-            id: parseInt(serviceId),
+        const serviceToRemove = await Service.findOneBy({
+            
+            id: parseInt(serviceId)
         })
 
 

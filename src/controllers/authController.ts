@@ -104,7 +104,7 @@ export const LogInService = async (req: Request, res: Response) => {
             }
         })
 
-        console.log(user);
+        
 
         if (!user) {
             return res.status(400).json({

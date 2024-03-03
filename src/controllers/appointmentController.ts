@@ -1,6 +1,7 @@
 import { Request, Response, application } from "express"
 import { Appointment } from "../models/Appointment";
 import { Service } from "../models/Service";
+import { isAppointmentHelper } from "../helpers/isAppointment";
 
 //APPOINTMENTS
 
