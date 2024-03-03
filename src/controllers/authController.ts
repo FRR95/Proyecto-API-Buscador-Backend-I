@@ -34,9 +34,7 @@ export const SignInService = async (req: Request, res: Response) => {
         //Encrypt Password
         const passwordEncrypted = bcrypt.hashSync(password, 8);
 
-        //Test encrypted password
-
-        // console.log(passwordEncrypted);
+     
 
 
         const NewUser = await User.create({
@@ -131,10 +129,25 @@ export const LogInService = async (req: Request, res: Response) => {
             }
         )
 
+        const showUser = await User.find({
+            where: {
+                email: email
+            },
+            relations: {
+                role: true
+            },
+            select: {
+                role: {
+                    name: true
+                }
+            }
+        })
+
         res.status(201).json({
             success: true,
             message: "User logged succesfully",
-            token: token
+            token: token,
+            data:showUser
 
         })
     }

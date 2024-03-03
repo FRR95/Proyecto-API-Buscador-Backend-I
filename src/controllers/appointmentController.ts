@@ -10,10 +10,14 @@ export const PostAppointment = async (req: Request, res: Response) => {
         const appointment_date = req.body.appointment_date;
         const user_id = req.tokenData.userId;
         const service_id = req.body.service_id;
+        const dateNow=new Date(Date.now());
+        const dateTyped=new Date(req.body.appointment_date);
+
 
         const service = await Service.findOneBy({
             id: parseInt(service_id)
         })
+
         if (!service) {
             return res.status(500).json({
                 success: false,
@@ -22,13 +26,13 @@ export const PostAppointment = async (req: Request, res: Response) => {
             })
         }
         //todo validar fecha 
-        // if (appointment_date<Date.now()) {
-        //     return res.status(500).json({
-        //          success: false,
-        //          message: "The Appointment must be the current date or after ",
+        if (dateTyped.getTime()<dateNow.getTime()) {
+            return res.status(500).json({
+                 success: false,
+                 message: "The Appointment must be the current date or after ",
 
-        //      })
-        //  }
+             })
+         }
 
         const NewAppointment = await Appointment.create({
             appointment_date: appointment_date,
