@@ -1,6 +1,7 @@
 import { Request, Response, application } from "express"
 import { Appointment } from "../models/Appointment";
 import { Service } from "../models/Service";
+import { isAppointmentHelper } from "../helpers/isAppointment";
 
 //APPOINTMENTS
 
@@ -10,24 +11,11 @@ export const PostAppointment = async (req: Request, res: Response) => {
         const user_id = req.tokenData.userId;
         const service_id = req.body.service_id;
 
-        const service = await Service.findOneBy({
-            id: parseInt(service_id)
-        })
-        if (!service) {
-            return res.status(500).json({
-                success: false,
-                message: "Service not found ",
 
-            })
-        }
-        //todo validar fecha 
-        // if (appointment_date<Date.now()) {
-        //     return res.status(500).json({
-        //          success: false,
-        //          message: "The Appointment must be the current date or after ",
 
-        //      })
-        //  }
+     
+
+    
 
         const NewAppointment = await Appointment.create({
             appointment_date: appointment_date,
@@ -60,19 +48,14 @@ export const UpdateAppointment = async (req: Request, res: Response) => {
         const UserId = req.tokenData.userId;
         const appointment_date = req.body.appointment_date;
         const ServiceId = req.body.service_id
+      
 
 
         const appointment = await Appointment.findOneBy({
             id: parseInt(AppointmentId)
         })
 
-        // if (appointment_date<Date.now()) {
-        //    return res.status(500).json({
-        //         success: false,
-        //         message: "The Appointment must be the current date or after ",
 
-        //     })
-        // }
         if (!appointment) {
             return res.status(500).json({
                 success: false,
@@ -80,17 +63,19 @@ export const UpdateAppointment = async (req: Request, res: Response) => {
 
             })
         }
+
+    
         const appointmentUpdated = await Appointment.update(
             {
                 id: parseInt(AppointmentId),
 
-                user:{
-                id:UserId
-            } 
+                user: {
+                    id: UserId
+                }
             },
             {
                 appointment_date: appointment_date,
-                service:{id: parseInt(ServiceId)},
+                service: { id: parseInt(ServiceId) },
             },
 
         )
@@ -129,7 +114,7 @@ export const RecoverAppointments = async (req: Request, res: Response) => {
         const users = await Appointment.find({
             where: {
                 id: parseInt(AppointmentId),
-                user:{id:UserId} 
+                user: { id: UserId }
             }
         })
         res.status(201).json({
@@ -151,7 +136,19 @@ export const GetUserAppointments = async (req: Request, res: Response) => {
         const UserId = req.tokenData.userId;
         const appointment = await Appointment.find({
             where: {
-                user:{id: UserId}
+                user: { id: UserId }
+            },
+            relations: {
+                service: true,
+                user: true
+            },
+            select: {
+                service: {
+                    service_name: true
+                },
+                user: {
+first_name:true
+                }
             }
         })
         res.status(200).json({
