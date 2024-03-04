@@ -5,7 +5,9 @@ Hi Geeks! I have made an application where you put the number and type of dumpli
 
 ## Index 🧾
 <details>
+
 <summary> Index 🧾</summary>
+
 
 - [Technologies ⚙](#technologies-)
 - [Installation ⬇](#installation-)
@@ -27,8 +29,7 @@ alt="Nodejs" />
 <img src="https://img.shields.io/badge/Express.js-335933?style=for-the-badge&logo=express&logoColor=white" 
 alt="Express" />
 
-<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=MySQL
-&logoColor=white" 
+<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=MySQL&logoColor=white" 
 alt="MySqls"/>
 
 
@@ -37,7 +38,9 @@ alt="MySqls"/>
 <details>
 
 <summary>Installation ⬇</summary>
-Enjoy yourself with this project in your local storage executing these commands in your terminal
+
+
+***Enjoy yourself with this project in your local storage executing these commands in your terminal***
 
 **1**
 ***Clone the repository***
