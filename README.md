@@ -1,7 +1,7 @@
 
 # Tattoo and piercing shop 
 
-Hi Geeks! I have made an application where you put the number and type of dumpling you want and you recieve the cheapes prize you have to pay based on an arithmetic average 
+Hi Geeks! I have made a backend application based on a Tatto and piercing shop where you can register and login and more things explained below!
 
 ## Index 🧾
 <details>
