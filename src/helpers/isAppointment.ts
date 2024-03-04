@@ -13,4 +13,16 @@ export const isAppointmentHelper =async (req:Request,res:Response)=>{
 
         })
     }
+
+ 
+    const dateNow = new Date(Date.now());
+    const dateTyped = new Date(req.body.appointment_date);
+
+    if (dateTyped.getTime() < dateNow.getTime()) {
+        return res.status(500).json({
+            success: false,
+            message: "The Appointment must be the current date or after ",
+
+        })
+    }
 }

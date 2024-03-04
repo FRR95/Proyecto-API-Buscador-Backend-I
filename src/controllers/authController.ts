@@ -20,16 +20,7 @@ export const SignInService = async (req: Request, res: Response) => {
             })
         }
 
-        const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-
-        if (!validEmail.test(email)) {
-            return res.status(400).json(
-                {
-                    success: false,
-                    message: "format email is invalid"
-                }
-            )
-        }
+    
 
         //Encrypt Password
         const passwordEncrypted = bcrypt.hashSync(password, 8);
@@ -43,7 +34,7 @@ export const SignInService = async (req: Request, res: Response) => {
             email: email,
             password_hash: passwordEncrypted,
             role: {
-                id: 3
+                id: 1
             }
         }).save()
 
@@ -73,14 +64,8 @@ export const LogInService = async (req: Request, res: Response) => {
         const password = req.body.password_hash
 
         //validator email and password
-
-        if (!email || !password) {
-            return res.status(400).json({
-                success: false,
-                message: "Email and password are needed ",
-
-            })
-        }
+   
+       
 
         //todo validar formato email 
 

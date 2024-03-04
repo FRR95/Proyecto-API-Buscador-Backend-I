@@ -11,6 +11,9 @@ export const GetUsers = async (req: Request, res: Response) => {
     try {
         const email=req.query.email
         const first_name=req.query.first_name
+        const limit=Number(req.query.limit)||5
+        const page=Number(req.query.page)||1
+        const skip=(page-1)*limit
 
         interface queryFilters{
          email?:FindOperator<string>
@@ -33,7 +36,10 @@ export const GetUsers = async (req: Request, res: Response) => {
         id:true,
         first_name:true,
         email:true
-        }
+        },
+        take:limit,
+        skip:skip
+      
         })
 
 
