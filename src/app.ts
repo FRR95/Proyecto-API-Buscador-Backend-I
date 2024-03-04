@@ -7,7 +7,8 @@ import { DeleteService, GetServices, PostService, UpdateService } from "./contro
 import  {auth}  from "./middlewares/auth";
 import { isSuperAdmin } from "./middlewares/isSuperAdmin";
 import { isAppointmentHelper } from "./helpers/isAppointment";
-import { isPasswordEmailHelper } from "./helpers/isPasswordEmail";
+import { isEmailAndPasswordHelper } from "./helpers/isEmailAndPassword";
+
 
 export const app =express();
 
@@ -17,8 +18,8 @@ app.use(express.json());
 // ROUTES 
 
 //AUTH ROUTES
-app.post('/api/auth/register',isPasswordEmailHelper,SignInService)
-app.post('/api/auth/login',isPasswordEmailHelper,LogInService)
+app.post('/api/auth/register',isEmailAndPasswordHelper,SignInService)
+app.post('/api/auth/login',isEmailAndPasswordHelper,LogInService)
 
 // USERS ROUTES
 app.get('/api/users',auth,isSuperAdmin,GetUsers)

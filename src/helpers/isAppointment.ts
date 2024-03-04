@@ -1,8 +1,10 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { Service } from "../models/Service";
 
-export const isAppointmentHelper =async (req:Request,res:Response)=>{
+export const isAppointmentHelper =async (req:Request,res:Response,next:NextFunction)=>{
     const service_id = req.body.service_id;
+    const dateNow = new Date(Date.now());
+    const dateTyped = new Date(req.body.appointment_date);
     const service = await Service.findOneBy({
         id: parseInt(service_id)
     })
@@ -15,8 +17,7 @@ export const isAppointmentHelper =async (req:Request,res:Response)=>{
     }
 
  
-    const dateNow = new Date(Date.now());
-    const dateTyped = new Date(req.body.appointment_date);
+ 
 
     if (dateTyped.getTime() < dateNow.getTime()) {
         return res.status(500).json({
@@ -25,4 +26,6 @@ export const isAppointmentHelper =async (req:Request,res:Response)=>{
 
         })
     }
+
+    next()
 }

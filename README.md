@@ -1,152 +1,260 @@
 
-# Dumplings Project 🥟
+# Tattoo and piercing shop 
 
-Hi Geeks! I have made an application where you put the number and type of dumpling you want and you recieve the cheapes prize you have to pay based on an arithmetic average   
+Hi Geeks! I have made an application where you put the number and type of dumpling you want and you recieve the cheapes prize you have to pay based on an arithmetic average 
 
 ## Index 🧾
+<details>
+<summary> Index 🧾</summary>
 
 - [Technologies ⚙](#technologies-)
-- [Download ⬇](#download-)
-- [Source Code 🔬](#source-code-)
-- [Roadmap ❗](#roadmap-)
-- [Author 🙍‍♂️](#author-🙍‍♂️)
+- [Installation ⬇](#installation-)
+- [Diagram](#diagram)
+- [Endpoints](#endpoints)
+- [Author 🙍‍♂️](#author-)
 - [Time of development ⌛](#time-of-development-)
 
-
+</details>
 
 ## Technologies ⚙
 
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=css3&logoColor=white" alt="JavaScript" />
-<img src="https://img.shields.io/badge/NodeJs-339933?style=for-the-badge&logo=Node.js&logoColor=white" alt="Nodejs" />
-<img src="https://img.shields.io/badge/VITEST-6E9F18?style=for-the-badge&logo=Vitest&logoColor=white" alt="Viyest" />
+<img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" 
+alt="TypeScript" />
+
+<img src="https://img.shields.io/badge/NodeJs-339933?style=for-the-badge&logo=Node.js&logoColor=white" 
+alt="Nodejs" />
+
+<img src="https://img.shields.io/badge/Express.js-335933?style=for-the-badge&logo=express&logoColor=white" 
+alt="Express" />
+
+<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=MySQL
+&logoColor=white" 
+alt="MySqls"/>
 
 
+## Installation ⬇
 
+<details>
 
-## Download ⬇
+<summary>Installation ⬇</summary>
+Enjoy yourself with this project in your local storage executing these commands in your terminal
 
-Enjoy yourself with this project in your local storage adding this command in your terminal
-
+**1**
+***Clone the repository***
 ```sh
-git clone https://github.com/FRR95/ProyectoEmpanadas.git
+git clone https://github.com/FRR95/Proyecto-API-Buscador-Backend-I.git
+```
+**2**
+***Install all your dependencies***
+```sh
+npm install
 ```
 
-You can see my commits in this url:
 
-> [https://github.com/FRR95/ProyectoEmpanadas/commits/main/]
+**3**
+***Create .env file based on .env.sample variables and add its proper values***
 
-## Source Code 🔬
-
-**JS**
-> [https://github.com/FRR95/ProyectoEmpanadas/blob/main/main.js]
-
-
+**4**
+***Run the server***
 ```sh
-export const fn = (a, b, c) => {
-   // )||(a < 0 || b < 0 || c < 0)||((a + b + c) % 3 != 0
-    let res = 0;//Declaring the result of the operation
-    if (((a + b + c) > 39)||(a < 0 || b < 0 || c < 0)||((a + b + c) % 3 != 0)) { ///If the Sum of the three values is more than 39 or one of the three values is negative (less than zero) or the sum of the three numbers is not divisible by three (module 3 is not equal 0)
-      console.log("Lo sentimos,el numero de empanadas no debe superar 39");///Print Error message via console
-        throw error();/////Throwing error to vitest
-    }
-  
-    else {//////////If none of the previous conditions are true the operation can be done 
-        res = Math.ceil(((a * 12) + (b * 14) + (c * 16)) / 3); ////Math.ceil method in case of decimal number result,round that one,each number of meals with their own prize added together and divided by the number of values (arithmetic average)
-       console.log(res);///Print Result via console
-        return res;///Print Result to vitest
-    }
-};
-
-let arrayEmpanadas = [1, 1, 1]; /////Declaring the array with the values
-
-fn(...arrayEmpanadas);//Calling the action with rest parameter
+npm run dev
 ```
 
-**VITEST**
-> [https://github.com/FRR95/ProyectoEmpanadas/blob/main/main.test.js]
+
+**5**
+***Craete all the tables on your database***
 
 ```sh
-import { fn } from "./main.js";
-
-describe("Function fn - Input Parameter Test Cases", () => {
-   test("Case: fn(1, 1, 1) - Expected Result: 14", () => {
-      const result = fn(1, 1, 1);
-      expect(result).toBe(14);
-   });
-
-   test("Case: fn(3, 3, 0) - Expected Result: 26", () => {
-      const result = fn(3, 3, 0);
-      expect(result).toBe(26);
-   });
-
-   test("Case: fn(2, 0, 1) - Expected Result: 14", () => {
-      const result = fn(2, 0, 1);
-      expect(result).toBe(14);
-   });
-
-   test("Case: fn(9, 10, 11) - Expected Result: 142", () => {
-      const result = fn(9, 10, 11);
-      expect(result).toBe(142);
-   });
-
-   test("Case: fn(11, 10, 9) - Expected Result: 139", () => {
-      const result = fn(11, 10, 9);
-      expect(result).toBe(139);
-   });
-
-   test("Throw error on negative input value: fn(-1, 3, 1)", () => {
-      expect(() => fn(-1, 3, 1)).toThrow();
-   });
-
-   test("Throws error when the total sum of inputs (2+2+1) is not a multiple of 3: fn(2, 2, 1)", () => {
-      expect(() => fn(2, 2, 1)).toThrow();
-   });
-
-   test("Throws error when the total sum of inputs (15+15+20) is not less than 40: fn(15, 15, 20)", () => {
-      expect(() => fn(15, 15, 20)).toThrow();
-   });
-});
+npm run run-migrations
 ```
-***The project passes all the tests:***
-
-<img src="./img/capturetest.PNG">
 
 
-**PACKAGE.JSON**
-[https://github.com/FRR95/ProyectoEmpanadas/blob/main/package.json]
+**6**
+***Create data for the tables***
+
 ```sh
+npm run run-serviceseeders
+npm run run-roleseeders
+npm run run-userseeders
+npm run run-appointmentseeders
+```
+
+***🚩CAUTION:Execute these commands in the showed order from strongest to weakest table or you can rather execute the sql code in the sql directory in the same order***
+
+</details>
+
+## Diagram
+
+<img src="./imgs/Captura.PNG">
+
+## Endpoints
+<details>
+<summary>Endpoints</summary>
+
+***Add in your client the following endpoints***
+
+***AUTH***
+
+- REGISTER A USER
+
+ ```sh
+POST localhost:4000/api/auth/register
+ ```
+***body***
+
+ ```sh
 {
-  "name": "empanadas-challenge",
-  "version": "1.0.0",
-  "type": "module",
-  "description": "Desafío de programación para resolver un problema de optimización para minimizar el gasto al comprar empanadas. Se incluye una descripción detallada del problema y se proporcionan casos de prueba.",
-  "main": "main.js",
-  "scripts": {
-    "start":"node main.js",
-    "test": "vitest"
-  },
-  "keywords": [
-    "javascript",
-    "challenge",
-    "exercise",
-    "programación",
-    "testing"
-  ],
-  "author": "Fidel Gilart",
-  "license": "ISC",
-  "devDependencies": {
-    "vitest": "^1.0.4"
-  }
+   "first_name":"the-firt-name",
+   "last_name":"the-last-name",
+   "email":"your-email",
+   "password-hash":"your-password"
 }
+ ```
+- LOGIN A USER
+
+ ```sh
+POST localhost:4000/api/auth/login
+ ```
+***body***
+
+ ```sh
+{
+   "email":"your-email",
+   "password-hash":"your-password"
+}
+ ```
+  
+***USER***      
+
+- GET A USER
+
+ ```sh
+GET localhost:4000/api/users
+ ```
+
+ - GET YOUR USER PROFILE
+
+ ```sh
+GET localhost:4000/api/user/profile
+ ```
+
+  - UPDATE YOUR USER PROFILE
+
+ ```sh
+PUT localhost:4000/api/user/profile
+ ```
+
+ ***body***
+
+ ```sh
+{
+   "first_name":"your-first-name"
+}
+ ```
+
+   - DELETE A USER
+
+ ```sh
+DELETE localhost:4000/api/users/:id
+ ```
+
+ - UPDATE A USER ROLE
+
+ ```sh
+PUT localhost:4000/api/users/:id/role
+
+ ```
+***APPOINTMENTS***  
+
+ - POST AN APPOINTMENT
+
+ ```sh
+POST localhost:4000/api/appointments
+ ```
+
+ ***body***
+
+ ```sh
+{
+   "appointment_date":"your-appointment-date",
+   "service_id":"service-id"
+}
+ ```
+ - UPDATE AN APPOINTMENT
+
+ ```sh
+PUT localhost:4000/api/appointments
+ ```
+
+ ***body***
+
+ ```sh
+{
+   "appointment_date":"your-appointment-date",
+   "service_id":"service-id"
+}
+ ```
+ - RECOVER AN APPOINTMENT
+
+ ```sh
+GET localhost:4000/api/appointments/:id
+ ```
+
+ - GET PROFILE APPOINTMENTS
+
+ ```sh
+GET localhost:4000/api/appointments
+ ```
+
+***SERVICES***  
+
+ - GET SERVICES
+
+ ```sh
+GET localhost:4000/api/services
+ ```
+
+  - POST A SERVICE
+
+ ```sh
+POST localhost:4000/api/services
+ ```
+
+ ***body***
+
+ ```sh
+{
+   "service_name":"service-name",
+   "description":"service-description"
+}
+ ```
+  - UPDATE A SERVICE
+
+ ```sh
+PUT localhost:4000/api/services/:id
+ ```
+
+ ***body***
+
+ ```sh
+{
+   "service_name":"service-name"
+}
+ ```
+
+   - DELETE A SERVICE
+
+ ```sh
+DELETE localhost:4000/api/services/:id
+ ```
+
+***🚩CAUTION:In some endpoints you need to be register and or with super_admin privileges showed as auth and isSuperAdmin middleware on the end points***
+
+***header***
+```sh
+your-token-here
 ```
-***Start inserted in the script to shorten the execution command ```node main.js```***
-## Roadmap ❗
-
-- **Install NodeJs on your computer to run this aplication** Use this url to download it [https://nodejs.org/en]
-- **Install all the dependencies** Use the command ```npm install``` in your console
-- **Test the application** Use the command ```npm run test``` in your console
-- **Start the appllication** Change the ```let arrayEmpanadas = [1, 1, 1]; ```(Chicken,meat and vegetarian respectively)and use the command ```npm start``` in your console to run the application and see the results
-
+</details>
 
 ## Author 🙍‍♂️
 

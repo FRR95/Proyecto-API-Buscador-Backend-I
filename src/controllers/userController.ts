@@ -9,37 +9,42 @@ import { FindOperator, Like } from "typeorm";
 
 export const GetUsers = async (req: Request, res: Response) => {
     try {
-        const email=req.query.email
-        const first_name=req.query.first_name
-        const limit=Number(req.query.limit)||5
-        const page=Number(req.query.page)||1
-        const skip=(page-1)*limit
-
-        interface queryFilters{
-         email?:FindOperator<string>
-         name?:FindOperator<string>
+        const email = req.query.email
+        const first_name = req.query.first_name
+        const limit = Number(req.query.limit) || 5
+        const page = Number(req.query.page) || 1
+        const skip = (page - 1) * limit
+        if (limit > 100) {
+            return res.status(404).json({
+                success: false,
+                message: "The limit is 100"
+            })
         }
-       const queryFilters:queryFilters ={}
+        interface queryFilters {
+            email?: FindOperator<string>
+            name?: FindOperator<string>
+        }
+        const queryFilters: queryFilters = {}
 
-        if(email){
-            queryFilters.email=Like("%"+req.query.email?.toString()+"%")
-            }
-        if(first_name){
-            queryFilters.name=Like("%"+req.query.first_name?.toString()+"%")
-            }
-        
+        if (email) {
+            queryFilters.email = Like("%" + req.query.email?.toString() + "%")
+        }
+        if (first_name) {
+            queryFilters.name = Like("%" + req.query.first_name?.toString() + "%")
+        }
+
         // const users = await User.find()
-        const users=  await User.find({
-        where: queryFilters,
-        
-        select:{
-        id:true,
-        first_name:true,
-        email:true
-        },
-        take:limit,
-        skip:skip
-      
+        const users = await User.find({
+            where: queryFilters,
+
+            select: {
+                id: true,
+                first_name: true,
+                email: true
+            },
+            take: limit,
+            skip: skip
+
         })
 
 

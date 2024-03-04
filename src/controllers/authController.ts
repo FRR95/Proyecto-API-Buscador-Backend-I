@@ -12,6 +12,7 @@ export const SignInService = async (req: Request, res: Response) => {
         const last_name = req.body.last_name;
         const email = req.body.email;
         const password = req.body.password_hash;
+        const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
         if (password.length < 6 || password.legth > 10) {
             return res.status(400).json({
@@ -19,13 +20,34 @@ export const SignInService = async (req: Request, res: Response) => {
                 message: "La contraseña debe estar entre 6 y 10 caracteres"
             })
         }
+        const emailRepeated = await User.findOne({
+            where: {
+                email: email
+            }
+        })
 
-    
+        if (emailRepeated) {
+            return res.status(400).json({
+                succes: false,
+                message: "El email ya existe"
+            })
+        }
+
+
+
+        if (!validEmail.test(email)) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: "format email is invalid"
+                }
+            )
+        }
 
         //Encrypt Password
         const passwordEncrypted = bcrypt.hashSync(password, 8);
 
-     
+
 
 
         const NewUser = await User.create({
@@ -53,7 +75,7 @@ export const SignInService = async (req: Request, res: Response) => {
             error: error
         })
     }
-  ///"first_name":"Francisco",
+    ///"first_name":"Francisco",
     ///"last_name":"Rocher",
     ///"email":"fran@gmail.com",
     ///"password_hash":"1234567"
@@ -62,13 +84,19 @@ export const LogInService = async (req: Request, res: Response) => {
     try {
         const email = req.body.email
         const password = req.body.password_hash
+        const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
-        //validator email and password
-   
-       
+        
 
         //todo validar formato email 
-
+        if (!validEmail.test(email)) {
+            return res.status(400).json(
+                {
+                    success: false,
+                    message: "format email is invalid"
+                }
+            )
+        }
         const user = await User.findOne({
             where: {
                 email: email
@@ -87,7 +115,7 @@ export const LogInService = async (req: Request, res: Response) => {
             }
         })
 
-        
+
 
         if (!user) {
             return res.status(400).json({
@@ -132,7 +160,7 @@ export const LogInService = async (req: Request, res: Response) => {
             success: true,
             message: "User logged succesfully",
             token: token,
-            data:showUser
+            data: showUser
 
         })
     }
@@ -143,7 +171,7 @@ export const LogInService = async (req: Request, res: Response) => {
             error: error
         })
     }
-  
+
     ///"email":"fran@gmail.com",
     ///"password_hash":"1234567"
 }
