@@ -268,7 +268,7 @@ POST https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/services
   - UPDATE A SERVICE
 
  ```sh
-PUT https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io//api/services/:id
+PUT https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/services/:id
  ```
 
  ***body***
@@ -282,7 +282,7 @@ PUT https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io//api/services
    - DELETE A SERVICE
 
  ```sh
-DELETE https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io//api/services/:id
+DELETE https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/services/:id
  ```
 
 ***🚩CAUTION:In some endpoints you need to be register and or with super_admin privileges showed as auth and isSuperAdmin middleware on the end points***
