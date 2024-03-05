@@ -13,6 +13,7 @@ Hi Geeks! I have made a backend application based on a Tatto and piercing shop w
 - [Installation ⬇](#installation-)
 - [Diagram](#diagram)
 - [Endpoints](#endpoints)
+- [Bugs 🐛](#bugs-)
 - [Author 🙍‍♂️](#author-)
 - [Time of development ⌛](#time-of-development-)
 
@@ -43,11 +44,13 @@ alt="MySqls"/>
 ***Enjoy yourself with this project in your local storage executing these commands in your terminal***
 
 **1**
+
 ***Clone the repository***
 ```sh
 git clone https://github.com/FRR95/Proyecto-API-Buscador-Backend-I.git
 ```
 **2**
+
 ***Install all your dependencies***
 ```sh
 npm install
@@ -55,9 +58,11 @@ npm install
 
 
 **3**
+
 ***Create .env file based on .env.sample variables and add its proper values***
 
 **4**
+
 ***Run the server***
 ```sh
 npm run dev
@@ -65,6 +70,7 @@ npm run dev
 
 
 **5**
+
 ***Craete all the tables on your database***
 
 ```sh
@@ -73,16 +79,24 @@ npm run run-migrations
 
 
 **6**
+
 ***Create data for the tables***
 
 ```sh
-npm run run-serviceseeders
-npm run run-roleseeders
-npm run run-userseeders
-npm run run-appointmentseeders
+npm run run-seeders
 ```
 
-***🚩CAUTION:Execute these commands in the showed order from strongest to weakest table or you can rather execute the sql code in the sql directory in the same order***
+***You can rather execute the sql code in the sql directory in the proper order (Services.sql>Roles.sql>Users.sql>Appointments.sql) from strongest to weakest table***
+
+
+**7**
+
+***Revert the tables***
+
+```sh
+npm run revert-migrations
+```
+
 
 </details>
 
@@ -258,6 +272,17 @@ DELETE localhost:4000/api/services/:id
 your-token-here
 ```
 </details>
+
+## Bugs 🐛
+
+**When i run the seeders an error appears and says:**
+```sh
+throw new CannotExecuteNotConnectedError(this.name)
+                  ^
+CannotExecuteNotConnectedError: Cannot execute operation on "default" connection because connection is not yet established.
+```
+
+**The connection is stablished and the seeder is succesfully executed anyway despite the error**
 
 ## Author 🙍‍♂️
 
