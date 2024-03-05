@@ -97,6 +97,15 @@ npm run run-seeders
 npm run revert-migrations
 ```
 
+**8**
+
+***Deploy and run the server***
+
+```sh
+npm run build
+npm start
+```
+
 
 </details>
 
