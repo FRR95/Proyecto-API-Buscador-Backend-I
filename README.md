@@ -127,7 +127,7 @@ npm start
 - REGISTER A USER
 
  ```sh
-POST localhost:4000/api/auth/register
+POST https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/auth/register
  ```
 ***body***
 
@@ -142,7 +142,7 @@ POST localhost:4000/api/auth/register
 - LOGIN A USER
 
  ```sh
-POST localhost:4000/api/auth/login
+POST https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/auth/login
  ```
 ***body***
 
@@ -158,19 +158,19 @@ POST localhost:4000/api/auth/login
 - GET A USER
 
  ```sh
-GET localhost:4000/api/users
+GET https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/users
  ```
 ***You can filter the searching by their email or first name ***
  - GET YOUR USER PROFILE
 
  ```sh
-GET localhost:4000/api/user/profile
+GET https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/user/profile
  ```
 
   - UPDATE YOUR USER PROFILE
 
  ```sh
-PUT localhost:4000/api/user/profile
+PUT https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/user/profile
  ```
 
  ***body***
@@ -184,13 +184,13 @@ PUT localhost:4000/api/user/profile
    - DELETE A USER
 
  ```sh
-DELETE localhost:4000/api/users/:id
+DELETE https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/users/:id
  ```
 
  - UPDATE A USER ROLE
 
  ```sh
-PUT localhost:4000/api/users/:id/role
+PUT https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/users/:id/role
  ```
 
   ***body***
@@ -205,7 +205,7 @@ PUT localhost:4000/api/users/:id/role
  - POST AN APPOINTMENT
 
  ```sh
-POST localhost:4000/api/appointments
+POST https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/appointments
  ```
 
  ***body***
@@ -219,7 +219,7 @@ POST localhost:4000/api/appointments
  - UPDATE AN APPOINTMENT
 
  ```sh
-PUT localhost:4000/api/appointments
+PUT https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/appointments
  ```
 
  ***body***
@@ -234,13 +234,13 @@ PUT localhost:4000/api/appointments
  - RECOVER AN APPOINTMENT
 
  ```sh
-GET localhost:4000/api/appointments/:id
+GET https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/appointments/:id
  ```
 
  - GET PROFILE APPOINTMENTS
 
  ```sh
-GET localhost:4000/api/appointments
+GET https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/appointments
  ```
 
 ***SERVICES***  
@@ -248,13 +248,13 @@ GET localhost:4000/api/appointments
  - GET SERVICES
 
  ```sh
-GET localhost:4000/api/services
+GET https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/services
  ```
 
   - POST A SERVICE
 
  ```sh
-POST localhost:4000/api/services
+POST https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/services
  ```
 
  ***body***
@@ -268,7 +268,7 @@ POST localhost:4000/api/services
   - UPDATE A SERVICE
 
  ```sh
-PUT localhost:4000/api/services/:id
+PUT https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io//api/services/:id
  ```
 
  ***body***
@@ -282,7 +282,7 @@ PUT localhost:4000/api/services/:id
    - DELETE A SERVICE
 
  ```sh
-DELETE localhost:4000/api/services/:id
+DELETE https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io//api/services/:id
  ```
 
 ***🚩CAUTION:In some endpoints you need to be register and or with super_admin privileges showed as auth and isSuperAdmin middleware on the end points***
