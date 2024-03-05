@@ -148,7 +148,7 @@ POST localhost:4000/api/auth/login
  ```sh
 GET localhost:4000/api/users
  ```
-
+***You can filter the searching by their email or first name ***
  - GET YOUR USER PROFILE
 
  ```sh
@@ -179,7 +179,14 @@ DELETE localhost:4000/api/users/:id
 
  ```sh
 PUT localhost:4000/api/users/:id/role
+ ```
 
+  ***body***
+
+ ```sh
+{
+   "role_id":id-number
+}
  ```
 ***APPOINTMENTS***  
 
@@ -207,6 +214,7 @@ PUT localhost:4000/api/appointments
 
  ```sh
 {
+   "id":"appointment-id",
    "appointment_date":"your-appointment-date",
    "service_id":"service-id"
 }
