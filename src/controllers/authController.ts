@@ -56,7 +56,7 @@ export const SignInService = async (req: Request, res: Response) => {
             email: email,
             password_hash: passwordEncrypted,
             role: {
-                id: 1
+                id: 3
             }
         }).save()
 

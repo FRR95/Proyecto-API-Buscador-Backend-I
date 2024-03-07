@@ -16,9 +16,6 @@ export const isAppointmentHelper =async (req:Request,res:Response,next:NextFunct
         })
     }
 
- 
- 
-
     if (dateTyped.getTime() < dateNow.getTime()) {
         return res.status(500).json({
             success: false,

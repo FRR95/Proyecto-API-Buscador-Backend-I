@@ -136,7 +136,7 @@ POST https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/auth/reg
    "first_name":"the-firt-name",
    "last_name":"the-last-name",
    "email":"your-email",
-   "password-hash":"your-password"
+   "password_hash":"your-password"
 }
  ```
 - LOGIN A USER
@@ -149,7 +149,7 @@ POST https://proyecto-api-buscador-backend-i-dev-adat.2.ie-1.fl0.io/api/auth/log
  ```sh
 {
    "email":"your-email",
-   "password-hash":"your-password"
+   "password_hash":"your-password"
 }
  ```
   

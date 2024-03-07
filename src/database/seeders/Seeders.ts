@@ -87,16 +87,16 @@ const userSeedDatabase = async () => {
         await AppDataSource.initialize();
         const fakeUsers = Array.from({ length: 10 }, generateFakeUsers);
         await User.save(fakeUsers);
-        await AppDataSource.destroy()
+        // await AppDataSource.destroy()
 
         console.log("Se han guardado corectamente los datos de usuarios")
     }
     catch (error) {
         console.log(error);
     } 
-    // finally {
-    //     await AppDataSource.destroy()
-    // }
+    finally {
+        await AppDataSource.destroy()
+    }
 }
 
 const generateFakeAppointments = () => {
@@ -112,7 +112,7 @@ const appointmentSeedDatabase = async () => {
         await AppDataSource.initialize();
         const fakeAppointments = Array.from({ length: 10 }, generateFakeAppointments);
         await Appointment.save(fakeAppointments);
-        await AppDataSource.destroy()
+       
 
         console.log("Se han guardado corectamente los datos de citas")
     }

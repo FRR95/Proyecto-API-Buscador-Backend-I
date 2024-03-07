@@ -11,12 +11,6 @@ export const PostAppointment = async (req: Request, res: Response) => {
         const user_id = req.tokenData.userId;
         const service_id = req.body.service_id;
 
-
-
-     
-
-    
-
         const NewAppointment = await Appointment.create({
             appointment_date: appointment_date,
             user: {
