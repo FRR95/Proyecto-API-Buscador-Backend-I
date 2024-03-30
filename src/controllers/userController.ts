@@ -40,10 +40,11 @@ export const GetUsers = async (req: Request, res: Response) => {
             select: {
                 id: true,
                 first_name: true,
+                last_name: true,
                 email: true
             },
-            take: limit,
-            skip: skip
+            // take: limit,
+            // skip: skip
 
         })
 
@@ -59,6 +60,37 @@ export const GetUsers = async (req: Request, res: Response) => {
         res.status(500).json({
             success: false,
             message: "Users can't be retrieved ",
+            error: error
+        })
+    }
+}
+
+export const GetUsersProfile = async (req: Request, res: Response) => {
+    try {
+        const userId = req.params.id;
+
+        const users = await User.findOne({
+
+            where: { id: parseInt(userId) },
+
+            select: {
+                id: true,
+                first_name: true,
+                last_name: true,
+                email: true
+            },
+        })
+
+        return res.status(200).json({
+            success: true,
+            message: "User profile retrieved succesfully ",
+            data: users
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "User can't be retrieved ",
             error: error
         })
     }
@@ -102,6 +134,7 @@ export const UpdateUserInfo = async (req: Request, res: Response) => {
 
         const userId = req.tokenData.userId;
         const name = req.body.first_name;
+        const lastName = req.body.last_name;
 
         const user = await User.findOneBy({
             id: userId
@@ -119,15 +152,20 @@ export const UpdateUserInfo = async (req: Request, res: Response) => {
                 id: userId
             },
             {
-                first_name: name
+                first_name: name,
+                last_name: lastName,
+
             }
         )
-
+        const userFetched = await User.findOneBy({
+            id: userId
+        })
 
         return res.status(200).json({
             success: true,
             message: "User updated succesfully ",
-            data: userUpdated
+            data: userUpdated,
+            dataFetched: userFetched
         })
 
     }
@@ -254,6 +292,51 @@ export const UpdateUserRole = async (req: Request, res: Response) => {
         res.status(500).json({
             success: false,
             message: "Role can't be changed",
+            error: error
+        })
+    }
+}
+
+export const UpdateUserInfoById = async (req: Request, res: Response) => {
+    try {
+        const userId = req.params.id
+        const first_name = req.body.first_name
+        const last_name = req.body.last_name
+
+        const user = await User.findOneBy({
+            id: parseInt(userId)
+        })
+        if (!user) {
+            return res.status(500).json({
+                success: false,
+                message: "User not found ",
+
+            })
+        }
+        const userUpdated = await User.update(
+            {
+                id: parseInt(userId)
+            },
+            {
+                first_name: first_name,
+                last_name: last_name,
+
+            }
+        )
+
+
+        return res.status(200).json({
+            success: true,
+            message: "User updated succesfully ",
+            data: userUpdated
+        })
+
+
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "User can't be Updated",
             error: error
         })
     }

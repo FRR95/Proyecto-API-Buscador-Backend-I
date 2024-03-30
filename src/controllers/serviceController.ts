@@ -7,7 +7,8 @@ export const GetServices = async (req: Request, res: Response) => {
         const services = await Service.find({
         select:{
          service_name:true,
-         description:true
+         description:true,
+         id:true
         }
         })
         res.status(200).json({
@@ -59,6 +60,7 @@ export const UpdateService = async (req: Request, res: Response) => {
     try {
         const serviceId = req.params.id;
         const service_name = req.body.service_name;
+        const description = req.body.description;
 
         const service = await Service.findOneBy({
             id: parseInt(serviceId)
@@ -75,7 +77,8 @@ export const UpdateService = async (req: Request, res: Response) => {
                 id: parseInt(serviceId)
             },
             {
-                service_name: service_name
+                service_name: service_name,
+                description:description
             }
         )
 

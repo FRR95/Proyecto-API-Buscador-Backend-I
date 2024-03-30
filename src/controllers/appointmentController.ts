@@ -42,7 +42,7 @@ export const UpdateAppointment = async (req: Request, res: Response) => {
         const UserId = req.tokenData.userId;
         const appointment_date = req.body.appointment_date;
         const ServiceId = req.body.service_id
-      
+
 
 
         const appointment = await Appointment.findOneBy({
@@ -58,7 +58,7 @@ export const UpdateAppointment = async (req: Request, res: Response) => {
             })
         }
 
-    
+
         const appointmentUpdated = await Appointment.update(
             {
                 id: parseInt(AppointmentId),
@@ -141,7 +141,7 @@ export const GetUserAppointments = async (req: Request, res: Response) => {
                     service_name: true
                 },
                 user: {
-first_name:true
+                    first_name: true
                 }
             }
         })
@@ -159,4 +159,78 @@ first_name:true
             error: error
         })
     }
+}
+
+export const DeleteUserAppointments = async (req: Request, res: Response) => {
+    try {
+        const appointmentId = req.params.id;
+        const appointmentToRemove = await Appointment.findOneBy({
+
+            id: parseInt(appointmentId)
+        })
+
+        if (!appointmentToRemove) {
+            return res.status(400).json({
+                success: false,
+                message: "Appointment not found"
+            })
+        }
+
+        const appointmentIdRemoved = await Appointment.remove(appointmentToRemove)
+        return res.status(200).json({
+            success: true,
+            message: "Appointment deleted succesfully ",
+            data: appointmentIdRemoved
+        })
+
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Appointment can't be deleted ",
+            error: error
+        })
+    }
+
+}
+export const GetUsersAppointments = async (req: Request, res: Response) => {
+    try {
+
+        const userId = req.params.id
+        const getUserAppointments = await Appointment.find({
+
+          where:{user:{id: parseInt(userId)}},
+          relations: {
+            service: true,
+            user: true
+        },
+        select: {
+            service: {
+                service_name: true
+            },
+            user: {
+                first_name: true
+            }
+        }
+
+          
+            
+
+        })
+        res.status(201).json({
+            success: true,
+            message: "Appointment´s user retrieved successfully ",
+            data: getUserAppointments
+        })
+
+        
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Appointment´s user cant be retreived ",
+            error: error
+        })
+    }
+
 }
